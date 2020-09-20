@@ -15,7 +15,7 @@ function drawGeo ( url ) {
         style: function (feature) {
           return { 
             fillColor: getColor(feature.properties.JINKO_LEVEL), 
-            fillOpacity: 0.8,
+            fillOpacity: 0.2,
             opacity: 0
           };
         }
