@@ -1,26 +1,20 @@
-function drawGeo ( url ) {
+function drawGeo(url) {
   $.ajax({
-    url: url,
+    url,
     type: "GET",
     contentType: "application/json",
-    headers: {
-        "X-CSRF-TOKEN": UserToken,
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        "X-Requested-With": "jquery"
-  },
-  success: function (data) {
+    success(data) {
       console.log(data);
       L.geoJSON(data, {
-        style: function (feature) {
-          return { 
-            fillColor: getColor(feature.properties.JINKO_LEVEL), 
+        style(feature) {
+          return {
+            fillColor: getColor(feature.properties.JINKO_LEVEL),
             fillOpacity: 0.2,
-            opacity: 0
+            opacity: 0,
           };
-        }
+        },
       }).addTo(map);
-    }
+    },
   });
 }
 
@@ -31,7 +25,7 @@ function getColor(level) {
 
     case 1:
       return "#fed976";
-    
+
     case 2:
       return "#fd8c3c";
 
@@ -40,13 +34,14 @@ function getColor(level) {
 
     case 4:
       return "#800026";
-      
+
     default:
       return "#ffffcc";
   }
-
 }
 
-for(var i = 1; i < 47; ++i) {
-   drawGeo("https://cdn.jsdelivr.net/gh/seito2/japan_population@latest/" + i + ".geojson");
+for (let i = 1; i < 47; ++i) {
+  drawGeo(
+    `https://cdn.jsdelivr.net/gh/seito2/japan_population@latest/${i}.geojson`
+  );
 }
